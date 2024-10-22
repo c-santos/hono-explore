@@ -1,0 +1,23 @@
+services:
+  hono-explore:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/hono-explore/
+    environment:
+      - PORT=8000
+      - NODE_ENV=LOCAL
+    depends_on:
+      - hono-db
+
+  hono-db:
+    container_name: hono-db
+    image: postgres
+    ports:
+      - '5433:5432'
+    expose:
+      - '5432'
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: hono-db
