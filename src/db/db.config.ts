@@ -1,7 +1,7 @@
 import { getEnvValue } from '@/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import pg from 'pg';
-import * as users from './schemas/users.schema';
+import * as schema from '@/db/schemas'
 
 const pool = new pg.Pool({
   host: getEnvValue('DB_HOST'),
@@ -13,7 +13,6 @@ const pool = new pg.Pool({
 });
 
 export const db = drizzle(pool, {
-  schema: {
-    ...users,
-  },
+  schema,
+  logger: true
 });

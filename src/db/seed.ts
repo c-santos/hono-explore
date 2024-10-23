@@ -1,5 +1,5 @@
 import { db } from './db.config';
-import { users } from './schemas/users.schema';
+import { users } from './schemas';
 
 async function seed() {
   console.info('Running seeders...');
