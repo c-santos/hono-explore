@@ -20,11 +20,12 @@ async function seed() {
     ]);
     console.info('Insert to users table: ', result);
 
-
-    console.info('Seed success!')
+    console.info('Seed success!');
   } catch (error) {
     console.error('Error seeding...', error);
   }
+
+  await db.$client.end();
 }
 
 seed();
