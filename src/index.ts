@@ -1,9 +1,10 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
-import tasksRouter from './tasks.route.js';
+import tasksRoute from './routes/tasks.route.js';
 import { logger } from 'hono/logger';
 import { notFound } from './middlewares/not-found.js';
 import { onError } from './middlewares/on-error.js';
+import usersRouter from './routes/users.route.js';
 
 const app = new Hono();
 
@@ -17,7 +18,8 @@ app.get('/health', (c) => {
 });
 
 // routes
-app.route('/tasks', tasksRouter);
+app.route('/tasks', tasksRoute);
+app.route('/users', usersRouter)
 
 // serve
 const port = 8000;
