@@ -15,6 +15,9 @@ node_modules/
 .env
 .env.production
 
+# docker db vol
+db-data/
+
 # logs
 logs/
 *.log
