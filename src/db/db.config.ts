@@ -1,6 +1,6 @@
 import { getEnvValue } from '@/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import pg from 'pg'
+import pg from 'pg';
 import * as users from './schemas/users.schema';
 
 const pool = new pg.Pool({
