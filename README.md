@@ -1,14 +1,18 @@
-
 # Hono Explore
 
 Exploring modern JavaScript libraries...
 
+## Setup
 
-``` sh
-npm install
-npm run dev
-```
+### Pre-requisites
 
-``` sh
-open http://localhost:port
+- Node
+- Docker
+
+### Local
+
+A convenience script is available to setup the project with Docker
+
+```sh
+sh setup.sh
 ```
