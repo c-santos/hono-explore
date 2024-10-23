@@ -6,6 +6,4 @@ const timestamps = {
   deleted_at: timestamp(),
 };
 
-export {
-    timestamps
-}
+export { timestamps };

@@ -1,5 +1,5 @@
 import * as p from 'drizzle-orm/pg-core';
-import { timestamps } from './schema.helpers';
+import { timestamps } from './helpers.schema';
 
 export const users = p.pgTable(
   'users',

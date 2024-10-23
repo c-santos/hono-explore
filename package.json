@@ -3,9 +3,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "db:introspect": "npx drizzle-kit introspect",
+    "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
-    "db:push": "npx drizzle-kit migrate",
-    "db:introspect": "npx drizzle-kit introspect"
+    "db:push": "npx drizzle-kit push"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.2",
