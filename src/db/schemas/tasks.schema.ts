@@ -7,7 +7,7 @@ const tasks = p.pgTable(
   'tasks',
   {
     ...timestamps,
-    id: p.uuid().primaryKey(),
+    id: p.uuid().primaryKey().defaultRandom(),
     title: p.text(),
     body: p.text(),
     completed: p.boolean().default(false).notNull(),

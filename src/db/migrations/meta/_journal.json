@@ -22,6 +22,13 @@
       "when": 1729739618327,
       "tag": "0002_minor_mikhail_rasputin",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1729749681929,
+      "tag": "0003_serious_william_stryker",
+      "breakpoints": true
     }
   ]
 }
