@@ -1,11 +1,12 @@
 import { db } from './db.config';
-import { users } from './schemas';
+import { tasks, users } from './schemas';
 
 async function seed() {
   console.info('Running seeders...');
   try {
     // Clear database
     await db.delete(users);
+    await db.delete(tasks);
 
     // Insert results
     const result = await db.insert(users).values([
