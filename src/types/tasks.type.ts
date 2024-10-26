@@ -14,6 +14,4 @@ export const Task = z.object({
   dueDate: z.string().optional(),
 });
 
-export type Task = typeof Task;
-
-
+export type Task = z.infer<typeof Task>;
