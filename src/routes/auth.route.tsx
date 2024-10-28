@@ -8,7 +8,14 @@ const authRouter = new Hono();
 authRouter.post('/register', zValidator('json', createUserDto), async (c) => {
   const body = await c.req.json();
   const authService = new AuthService();
-  const user = await authService.registerUser(body)
+  const user = await authService.registerUser(body);
+  return c.json(user);
+});
+
+authRouter.post('/login', zValidator('json', createUserDto), async (c) => {
+  const body = await c.req.json();
+  const authService = new AuthService();
+  const user = await authService.login(body);
   return c.json(user);
 });
 

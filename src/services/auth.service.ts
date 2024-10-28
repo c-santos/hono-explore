@@ -1,4 +1,4 @@
-import { registerUserDto } from '@/types/auth.types';
+import { loginDto, registerUserDto } from '@/types/auth.types';
 import * as a2 from 'argon2';
 import { HTTPException } from 'hono/http-exception';
 import { UsersService } from './users.service';
@@ -27,5 +27,27 @@ export class AuthService {
       console.error(error);
       throw error;
     }
+  }
+
+  async login(data: loginDto) {
+    const user = await UsersService.getUserByUsername(data.username);
+
+    if (!user || !user.password) {
+      throw new HTTPException(400, {
+        message: 'Check login credentials',
+        cause: 'user does not exist',
+      });
+    }
+
+    const compare = await a2.verify(user?.password, data.password);
+
+    if (!compare) {
+      throw new HTTPException(400, {
+        message: 'Check login credentials',
+        cause: 'invalid credentials',
+      });
+    }
+
+    return user;
   }
 }
