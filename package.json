@@ -2,7 +2,7 @@
   "name": "hono-explore",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch src/index.tsx",
     "db:introspect": "npx drizzle-kit introspect",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
