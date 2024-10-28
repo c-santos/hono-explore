@@ -1,5 +1,5 @@
 import { FC } from 'hono/jsx';
-import Layout from './layout';
+import Layout from './Layout';
 
 export type ProfileProps = {
   username: string;

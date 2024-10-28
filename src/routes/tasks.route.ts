@@ -9,14 +9,14 @@ import {
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 
-const tasksRoute = new Hono();
+const tasksRouter = new Hono();
 
-tasksRoute.get('/', async (c) => {
+tasksRouter.get('/', async (c) => {
   const tasks = await TasksService.getTasks();
   return c.json({ tasks: tasks });
 });
 
-tasksRoute.get('/:id', zValidator('param', getOneTaskDto), (c) => {
+tasksRouter.get('/:id', zValidator('param', getOneTaskDto), (c) => {
   const id: string = c.req.param('id');
   const task = TasksService.getOneTask(id);
 
@@ -27,7 +27,7 @@ tasksRoute.get('/:id', zValidator('param', getOneTaskDto), (c) => {
   return c.json({ data: task });
 });
 
-tasksRoute.post('/', zValidator('json', createTaskDto), async (c) => {
+tasksRouter.post('/', zValidator('json', createTaskDto), async (c) => {
   const body = await c.req.json();
 
   const created = await TasksService.createTask(body);
@@ -45,7 +45,7 @@ tasksRoute.post('/', zValidator('json', createTaskDto), async (c) => {
   });
 });
 
-tasksRoute.patch(
+tasksRouter.patch(
   '/:id',
   zValidator('param', updateTaskStatusParam),
   zValidator('json', updateTaskStatusBody),
@@ -60,4 +60,4 @@ tasksRoute.patch(
   },
 );
 
-export default tasksRoute;
+export default tasksRouter;
