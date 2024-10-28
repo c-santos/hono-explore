@@ -1,11 +1,11 @@
+import { UsersService } from '@/services/users.service';
 import { Hono } from 'hono';
-import * as userService from '@/services/users.service';
 
 const usersRouter = new Hono();
 
 usersRouter.get('/', async (c) => {
   try {
-    const users = await userService.getUsers();
+    const users = await UsersService.getUsers();
 
     return c.json({
       users: users,

@@ -1,4 +1,4 @@
-import { getOneUserById } from '@/services/users.service';
+import { UsersService } from '@/services/users.service';
 import Profile from '@/views/Profile';
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
@@ -7,7 +7,7 @@ export const profileRouter = new Hono();
 
 profileRouter.get('/:id', async (c) => {
   const id = c.req.param('id');
-  const user = await getOneUserById(id);
+  const user = await UsersService.getOneUserById(id);
   if (!user) {
     throw new HTTPException(500, {
       message: 'user does not exist',
