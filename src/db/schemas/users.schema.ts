@@ -7,6 +7,7 @@ const users = p.pgTable(
     ...timestamps,
     id: p.uuid().primaryKey().defaultRandom(),
     username: p.text().notNull().unique(),
+    password: p.text(),
   },
   (table) => {
     return {
