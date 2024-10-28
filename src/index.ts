@@ -5,9 +5,11 @@ import { logger } from 'hono/logger';
 import { notFound } from './middlewares/not-found.js';
 import { onError } from './middlewares/on-error.js';
 import usersRouter from './routes/users.route.js';
+import { prettyJSON } from 'hono/pretty-json';
 
 const app = new Hono();
 
+app.use(prettyJSON())
 app.use(logger());
 app.notFound(notFound);
 app.onError(onError);

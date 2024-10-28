@@ -1,11 +1,11 @@
 import * as p from 'drizzle-orm/pg-core';
 import { timestamps } from './helpers.schema';
 
-export const users = p.pgTable(
+const users = p.pgTable(
   'users',
   {
     ...timestamps,
-    id: p.uuid().primaryKey(),
+    id: p.uuid().primaryKey().defaultRandom(),
     username: p.text().notNull().unique(),
   },
   (table) => {
@@ -14,3 +14,5 @@ export const users = p.pgTable(
     };
   },
 );
+
+export default users;

@@ -8,7 +8,7 @@ usersRouter.get('/', async (c) => {
     const users = await userService.getUsers();
 
     return c.json({
-      message: users,
+      users: users,
     }, 200);
   } catch (error) {
     c.status(500)

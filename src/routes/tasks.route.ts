@@ -1,47 +1,63 @@
+import { TasksService } from '@/services/tasks.service';
+import {
+  createTaskDto,
+  getOneTaskDto,
+  updateTaskStatusBody,
+  UpdateTaskStatusBody,
+  updateTaskStatusParam,
+} from '@/types/tasks.dto';
+import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
-
-type Task = {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-};
-
-const tasks: Task[] = [
-  {
-    id: '1',
-    title: 'Task 1',
-    description: 'This is task 1',
-    completed: false,
-  },
-  {
-    id: '2',
-    title: 'Task 2',
-    description: 'This is task 2',
-    completed: true,
-  },
-];
 
 const tasksRoute = new Hono();
 
-tasksRoute.get('/', (c) => {
-  return c.json({
-    data: tasks,
-  });
+tasksRoute.get('/', async (c) => {
+  const tasks = await TasksService.getTasks();
+  return c.json({ tasks: tasks });
 });
 
-tasksRoute.get('/:id', (c) => {
+tasksRoute.get('/:id', zValidator('param', getOneTaskDto), (c) => {
   const id: string = c.req.param('id');
+  const task = TasksService.getOneTask(id);
 
-  const task = tasks[parseInt(id)];
+  if (!task) {
+    return c.json({ message: 'Task not found' }, 404);
+  }
+
+  return c.json({ data: task });
+});
+
+tasksRoute.post('/', zValidator('json', createTaskDto), async (c) => {
+  const body = await c.req.json();
+
+  const created = await TasksService.createTask(body);
+  if (!created) {
+    return c.json(
+      {
+        message: 'Could not create task',
+      },
+      500,
+    );
+  }
 
   return c.json({
-    data: task,
+    data: created,
   });
 });
 
-tasksRoute.post('/', async (c) => {
-  const body = await c.req.json()
-})
+tasksRoute.patch(
+  '/:id',
+  zValidator('param', updateTaskStatusParam),
+  zValidator('json', updateTaskStatusBody),
+  async (c) => {
+    const id = c.req.param('id');
+    const body = await c.req.json<UpdateTaskStatusBody>();
+    const task = await TasksService.updateTaskStatus(id, body.status);
+
+    return c.json({
+      task: task,
+    });
+  },
+);
 
 export default tasksRoute;

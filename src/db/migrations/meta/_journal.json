@@ -8,6 +8,27 @@
       "when": 1729702208324,
       "tag": "0000_chief_layla_miller",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729702618873,
+      "tag": "0001_smooth_juggernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729739618327,
+      "tag": "0002_minor_mikhail_rasputin",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1729749681929,
+      "tag": "0003_serious_william_stryker",
+      "breakpoints": true
     }
   ]
 }
