@@ -1,7 +1,7 @@
 import { UsersService } from '@/services/users.service';
 import { Hono } from 'hono';
 
-const usersRouter = new Hono();
+const usersRouter = new Hono().basePath('/users');
 
 usersRouter.get('/', async (c) => {
   try {

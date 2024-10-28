@@ -3,7 +3,7 @@ import { createUserDto } from '@/types/users.dto';
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 
-const authRouter = new Hono();
+const authRouter = new Hono().basePath('/auth');
 
 authRouter.post('/register', zValidator('json', createUserDto), async (c) => {
   const body = await c.req.json();

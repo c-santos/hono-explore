@@ -9,7 +9,7 @@ import {
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 
-const tasksRouter = new Hono();
+const tasksRouter = new Hono().basePath('/tasks');
 
 tasksRouter.get('/', async (c) => {
   const tasks = await TasksService.getTasks();
