@@ -14,11 +14,11 @@ export class AuthService {
           cause: 'password is empty',
         });
 
-      const hashed = a2.hash(data.password);
+      const hashed = await a2.hash(data.password);
       delete data.password;
 
       const user = await UsersService.createUser({
-        username: data.password,
+        username: data.username,
         password: hashed,
       });
 
