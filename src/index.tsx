@@ -7,6 +7,7 @@ import { Hono } from 'hono';
 import tasksRoute from './routes/tasks.route.js';
 import usersRouter from './routes/users.route.js';
 import { profileRouter } from './routes/profile.route.js';
+import authRouter from './routes/auth.route.js';
 
 const app = new Hono();
 
@@ -25,6 +26,7 @@ app.get('/health', (c) => {
 app.route('/tasks', tasksRoute);
 app.route('/users', usersRouter);
 app.route('/profile', profileRouter);
+app.route('/auth', authRouter)
 
 // serve
 const port = 8000;
