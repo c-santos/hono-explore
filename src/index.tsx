@@ -1,15 +1,16 @@
 import { serve } from '@hono/node-server';
-import { Hono } from 'hono';
-import tasksRoute from './routes/tasks.route.js';
 import { logger } from 'hono/logger';
 import { notFound } from './middlewares/not-found.js';
 import { onError } from './middlewares/on-error.js';
-import usersRouter from './routes/users.route.js';
 import { prettyJSON } from 'hono/pretty-json';
+import { Hono } from 'hono';
+import tasksRoute from './routes/tasks.route.js';
+import usersRouter from './routes/users.route.js';
 import { profileRouter } from './routes/profile.route.js';
 
 const app = new Hono();
 
+// middleware
 app.use(prettyJSON());
 app.use(logger());
 app.notFound(notFound);
@@ -23,7 +24,7 @@ app.get('/health', (c) => {
 // routes
 app.route('/tasks', tasksRoute);
 app.route('/users', usersRouter);
-app.route('/profile', profileRouter)
+app.route('/profile', profileRouter);
 
 // serve
 const port = 8000;
