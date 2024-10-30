@@ -1,4 +1,4 @@
-import { loginDto, registerUserDto } from '@/types/auth.types';
+import { LoginUserDto, RegisterUserDto } from '@/types/auth.types';
 import * as a2 from 'argon2';
 import { HTTPException } from 'hono/http-exception';
 import { UsersService } from './users.service';
@@ -6,7 +6,7 @@ import { UsersService } from './users.service';
 export class AuthService {
   constructor() {}
 
-  async registerUser(data: registerUserDto) {
+  async registerUser(data: RegisterUserDto) {
     try {
       if (!data.password)
         throw new HTTPException(400, {
@@ -29,7 +29,7 @@ export class AuthService {
     }
   }
 
-  async login(data: loginDto) {
+  async login(data: LoginUserDto) {
     const user = await UsersService.getUserByUsername(data.username);
 
     if (!user || !user.password) {

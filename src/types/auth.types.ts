@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { createUserDto } from './users.dto';
+import { loginUserDto } from './auth.dto';
 
-export type registerUserDto = z.infer<typeof createUserDto>;
-
-export type loginDto = { username: string; password: string };
+export type RegisterUserDto = z.infer<typeof createUserDto>;
+export type LoginUserDto = z.infer<typeof loginUserDto>

@@ -5,7 +5,8 @@ import { onError } from './middlewares/on-error.js';
 import { prettyJSON } from 'hono/pretty-json';
 import { Hono } from 'hono';
 import { profileRouter } from './routes/profile.route.js';
-import apiRouter from './routes/api/index.route..js';
+import apiRouter from './routes/api/api.route.js';
+import authViewRouter from './routes/auth-view.route.js';
 
 const app = new Hono();
 
@@ -22,7 +23,9 @@ app.get('/health', (c) => {
 
 // routes
 app.route('/', apiRouter);
+
 app.route('/profile', profileRouter);
+app.route('/', authViewRouter);
 
 // serve
 const port = 8000;
