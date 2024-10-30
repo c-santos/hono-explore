@@ -12,3 +12,16 @@ export const registerDto = z.object({
 
 export type RegisterDto = z.infer<typeof registerDto>;
 export type LoginDto = z.infer<typeof loginDto>;
+
+export type JwtPayload = {
+  userId: string;
+  expiresMs: number;
+};
+
+export type LoginResponseDto = {
+  tokens: {
+    access_token: string;
+    refresh_token: string;
+  };
+  user: any;
+};
