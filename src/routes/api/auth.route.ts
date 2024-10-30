@@ -1,7 +1,7 @@
 import { AuthService } from '@/services/auth.service';
 import { loginUserDto } from '@/types/auth.dto';
 import { LoginUserDto } from '@/types/auth.types';
-import { createUserDto } from '@/types/users.dto';
+import { createUserDto } from '@/types/users.type';
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 
