@@ -1,5 +1,5 @@
 import { UsersService } from '@/services/users.service';
-import { CreateUserDto, createUserDto } from '@/types/users.dto';
+import { CreateUserDto, createUserDto } from '@/types/users.type';
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 
