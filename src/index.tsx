@@ -7,6 +7,7 @@ import { Hono } from 'hono';
 import { profileRouter } from './routes/profile.route.js';
 import apiRouter from './routes/api/api.route.js';
 import authViewRouter from './routes/auth-view.route.js';
+import { cors } from 'hono/cors';
 
 const app = new Hono();
 
@@ -15,6 +16,7 @@ app.use(prettyJSON());
 app.use(logger());
 app.notFound(notFound);
 app.onError(onError);
+app.use(cors())
 
 // health check
 app.get('/health', (c) => {
