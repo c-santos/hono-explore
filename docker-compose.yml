@@ -10,6 +10,9 @@ services:
       - NODE_ENV=LOCAL
     depends_on:
       - hono-db
+    networks:
+        - my_network
+    profiles: [backend]
 
   hono-db:
     container_name: hono-db
@@ -23,3 +26,8 @@ services:
     environment:
       POSTGRES_PASSWORD: $DB_PASS
       POSTGRES_DB: $DB_NAME
+    networks:
+        - my_network
+
+networks:
+  my_network:
