@@ -20,8 +20,9 @@ authRouter
     console.log('[INFO][auth.register] registered user: ', user);
     return c.json(user);
   })
-  .post('/login', zValidator('form', loginDto), async (c) => {
-    const body = await c.req.parseBody<LoginDto>();
+  .post('/login', zValidator('json', loginDto), async (c) => {
+    const body = await c.req.json<LoginDto>();
+    console.log('Login body: ', body)
     const authService = new AuthService();
     const { user, tokens } = await authService.login(body);
 
